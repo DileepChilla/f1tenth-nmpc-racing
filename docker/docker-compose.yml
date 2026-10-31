@@ -1,0 +1,19 @@
+# Usage (from the repository root):  docker compose -f docker/docker-compose.yml run --rm nmpc
+# GUI windows (RViz, matplotlib) go through WSLg on Windows 11 / WSL2.
+services:
+  nmpc:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: f1tenth-nmpc:humble
+    stdin_open: true
+    tty: true
+    volumes:
+      - ..:/workspace/f1tenth-nmpc-racing
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
+      - XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+      - PULSE_SERVER=/mnt/wslg/PulseServer

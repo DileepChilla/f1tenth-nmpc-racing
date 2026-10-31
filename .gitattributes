@@ -1,0 +1,8 @@
+# Keep LF line endings so scripts and Dockerfiles work inside Linux containers,
+# even when the repository is checked out on Windows.
+* text=auto eol=lf
+*.png binary
+*.pgm binary
+*.gif binary
+*.mp4 binary
+*.pdf binary

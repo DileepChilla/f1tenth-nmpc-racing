@@ -1,0 +1,27 @@
+# F1TENTH vehicle parameters.
+# Source: f1tenth_gym, gym/f110_gym/envs/f110_env.py (default `params` dict).
+# These are the values the SIMULATOR uses, so the controller's prediction model
+# is built from the same numbers.
+#
+# NOTE: C_Sf and C_Sr are *normalised* cornering-stiffness coefficients [1/rad]
+# in the gym's single-track model. Lateral force per axle is
+#   F_y = mu * C_S * F_z * alpha
+# so the cornering stiffness in N/rad is mu * C_S * F_z (see vehicle.py).
+mu: 1.0489        # friction coefficient [-]
+C_Sf: 4.718       # front normalised cornering stiffness [1/rad]
+C_Sr: 5.4562      # rear normalised cornering stiffness [1/rad]
+lf: 0.15875       # CoG to front axle [m]
+lr: 0.17145       # CoG to rear axle [m]
+h: 0.074          # CoG height [m]
+m: 3.74           # mass [kg]
+I: 0.04712        # yaw inertia [kg m^2]
+s_min: -0.4189    # min steering angle [rad]
+s_max: 0.4189     # max steering angle [rad]
+sv_min: -3.2      # min steering velocity [rad/s]
+sv_max: 3.2       # max steering velocity [rad/s]
+v_switch: 7.319   # speed above which accel is power-limited [m/s]
+a_max: 9.51       # max longitudinal acceleration [m/s^2]
+v_min: -5.0       # min speed [m/s]
+v_max: 20.0       # max speed [m/s]
+width: 0.31       # vehicle width [m]
+length: 0.58      # vehicle length [m]
