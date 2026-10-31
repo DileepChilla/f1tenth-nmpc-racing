@@ -23,3 +23,9 @@ One entry per decision: what, why, what else was considered. These are the answe
 ## D4. Only measured quantities are fed to the controller
 - **Note:** The gym reports `linear_vels_y = 0` and `linear_vels_x` = total speed `v`.
   The controller's initial state must be built accordingly (handled in Week 3 validation).
+
+## D5. Old f110_gym simulator with the upstream ROS 2 bridge `main`
+- **Decision:** `f1tenth_gym` pinned at `4fdb9c7`, `f1tenth_gym_ros` `main` pinned at `883394d` (`BRIDGE_REF`).
+- **Why:** The bridge branch `dev-humble` targets the new gym API; `main` matches the old `f110_gym` that
+  the course project uses. Both commits are pinned for reproducible builds.
+- **Alternative:** New gym plus `dev-humble` (different API, not what the team repo uses).

@@ -1,5 +1,5 @@
 # ROS 2 Humble + f1tenth_gym + CasADi.
-# STATUS: draft, not yet built. Week 1 builds it and fixes whatever breaks.
+# STATUS: builds and runs (Task 1). Image tag: f1tenth-nmpc:humble
 FROM ros:humble-ros-base-jammy
 
 SHELL ["/bin/bash", "-c"]
@@ -24,6 +24,19 @@ ARG GYM_REF=4fdb9c7e6fb7c701290f4dc18377d07c1681724f
 RUN git clone https://github.com/f1tenth/f1tenth_gym /opt/f1tenth_gym \
     && cd /opt/f1tenth_gym && git checkout ${GYM_REF} \
     && pip3 install --no-cache-dir -e .
+
+# ROS 2 gym bridge (upstream main; matches the pinned f110_gym simulator)
+ARG BRIDGE_REF=883394df0964c555ee05bea69c3002daf6f2d405
+RUN apt-get update \
+    && mkdir -p /sim_ws/src \
+    && git clone https://github.com/f1tenth/f1tenth_gym_ros /sim_ws/src/f1tenth_gym_ros \
+    && git -C /sim_ws/src/f1tenth_gym_ros checkout ${BRIDGE_REF} \
+    && source /opt/ros/humble/setup.bash \
+    && cd /sim_ws \
+    && rosdep install -i --from-path src --rosdistro humble -y --skip-keys "python-transforms3d-pip" \
+    && colcon build \
+    && rm -rf /var/lib/apt/lists/*
+RUN echo 'source /sim_ws/install/setup.bash' >> /root/.bashrc
 
 WORKDIR /workspace/f1tenth-nmpc-racing
 RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc

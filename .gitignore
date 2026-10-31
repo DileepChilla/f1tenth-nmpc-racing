@@ -22,3 +22,6 @@ results/raw/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Course material (not ours to publish)
+Aufgabenstellung*.pdf

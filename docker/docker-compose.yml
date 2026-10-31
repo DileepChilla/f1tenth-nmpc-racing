@@ -13,6 +13,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /mnt/wslg:/mnt/wslg
     environment:
+      - LIBGL_ALWAYS_SOFTWARE=1
       - DISPLAY=${DISPLAY:-:0}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
       - XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir

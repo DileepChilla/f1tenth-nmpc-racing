@@ -8,7 +8,7 @@ shell:
 
 # Run inside the container:
 test:
-	pip3 install -e ".[dev]" && pytest
+	PYTHONPATH=src python3 -m pytest -q
 
 lint:
 	ruff check src tests
